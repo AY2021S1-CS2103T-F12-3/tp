@@ -6,7 +6,7 @@ import tp.cap5buddy.modules.ModuleList;
 import java.util.ArrayList;
 
 /**
- * Represents the AddModuleCommand class.
+ * Represents the ViewModuleCommand class.
  */
 public class ViewModuleCommand extends Command {
     private static final String SUCCESS_MESSAGE = "Module details have been displayed successfully!";
@@ -18,7 +18,7 @@ public class ViewModuleCommand extends Command {
     }
 
     /**
-     * Executes the main function of this command, to create a new module.
+     * Executes the main function of this command, to view a specified module.
      * @return String success message.
      */
     public ResultCommand execute(ModuleList modules) {

@@ -10,6 +10,12 @@ import tp.cap5buddy.logic.commands.ViewModuleCommand;
  */
 public class ViewModuleParser extends Parser {
 
+    /**
+     * Parses a user input for a command to view a stored module.
+     *
+     * @param userInput
+     * @return
+     */
     public Command parse(String userInput) {
         Tokenizer token = new Tokenizer(userInput);
         String[] mod = token.getWords();
