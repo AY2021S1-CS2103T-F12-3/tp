@@ -51,6 +51,10 @@ public class ParserManager {
             parser = new ViewModuleParser();
             command = parser.parse(this.nonCommand);
             return command;
+        case "editmodule":
+            parser = new EditModuleParser();
+            command = parser.parse(this.nonCommand);
+            return command;
         default:
             throw new ParseException("Invalid command");
         }
