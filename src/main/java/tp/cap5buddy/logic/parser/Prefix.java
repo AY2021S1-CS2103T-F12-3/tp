@@ -1,4 +1,4 @@
-package tp.cap5buddy.parser;
+package tp.cap5buddy.logic.parser;
 
 public class Prefix {
     private final String prefix;
@@ -30,7 +30,9 @@ public class Prefix {
         case "l/":
             res = true;
             break;
-
+        case "v/":
+            res = true;
+            break;
         default:
             res = false;
         }
