@@ -1,8 +1,6 @@
 package tp.cap5buddy.logic.parser;
 
-import tp.cap5buddy.logic.commands.AddModuleCommand;
 import tp.cap5buddy.logic.commands.Command;
-import tp.cap5buddy.logic.commands.ResultCommand;
 import tp.cap5buddy.logic.commands.ViewModuleCommand;
 
 /**

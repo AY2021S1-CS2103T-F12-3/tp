@@ -1,9 +1,11 @@
 package tp.cap5buddy.logic.commands;
 
+import java.util.ArrayList;
+
 import tp.cap5buddy.modules.Module;
 import tp.cap5buddy.modules.ModuleList;
 
-import java.util.ArrayList;
+
 
 /**
  * Represents the ViewModuleCommand class.
@@ -23,8 +25,8 @@ public class ViewModuleCommand extends Command {
      */
     public ResultCommand execute(ModuleList modules) {
         Module moduleToBeDisplayed = modules.getModule(moduleName);
-        return new ResultCommand(moduleToBeDisplayed.toString() + "\n" +
-                SUCCESS_MESSAGE, isExit());
+        return new ResultCommand(moduleToBeDisplayed.toString() + "\n"
+                + SUCCESS_MESSAGE, isExit());
     }
 
     /**
