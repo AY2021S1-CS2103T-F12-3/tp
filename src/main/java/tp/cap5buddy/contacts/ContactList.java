@@ -2,6 +2,7 @@ package tp.cap5buddy.contacts;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import tp.cap5buddy.contacts.exceptions.ContactNotFoundException;
@@ -13,6 +14,10 @@ public class ContactList {
 
     public ContactList(List<Contact> contacts) {
         this.contacts = contacts;
+    }
+
+    public ContactList() {
+        this.contacts = new ArrayList<>();
     }
 
     /**

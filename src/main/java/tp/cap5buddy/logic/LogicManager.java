@@ -47,6 +47,7 @@ public class LogicManager implements Logic {
         CommandResult result = command.execute(moduleList, contactList);
         try {
             storage.saveModuleList(moduleList);
+            storage.saveContactList(contactList);
         } catch (IOException ioe) {
             System.out.println(ioe.getMessage());
         }

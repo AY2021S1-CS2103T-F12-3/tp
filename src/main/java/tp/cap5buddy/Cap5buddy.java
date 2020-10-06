@@ -11,8 +11,8 @@ import tp.cap5buddy.logic.LogicManager;
 import tp.cap5buddy.logic.commands.CommandResult;
 import tp.cap5buddy.logic.commands.exception.CommandException;
 import tp.cap5buddy.logic.parser.exception.ParseException;
-import tp.cap5buddy.modules.Module;
 import tp.cap5buddy.modules.ModuleList;
+import tp.cap5buddy.storage.JsonContactListStorage;
 import tp.cap5buddy.storage.JsonModuleListStorage;
 import tp.cap5buddy.storage.StorageManager;
 import tp.cap5buddy.ui.Ui;
@@ -36,22 +36,32 @@ public class Cap5buddy {
 
     private static void run(Ui ui) throws ParseException, CommandException {
         boolean isExit = false;
-        Path saveDir = Paths.get(".\\data\\moduleList.json");
-        JsonModuleListStorage storageList = new JsonModuleListStorage(saveDir);
-        StorageManager storage = new StorageManager(storageList);
+        Path contactsSaveDir = Paths.get(".\\data\\contactList.json");
+        Path modulesSaveDir = Paths.get(".\\data\\moduleList.json");
+        JsonModuleListStorage moduleStorageList = new JsonModuleListStorage(modulesSaveDir);
+        JsonContactListStorage contactStorageList = new JsonContactListStorage(contactsSaveDir);
+        StorageManager storage = new StorageManager(moduleStorageList, contactStorageList);
         ModuleList moduleList;
+        ContactList contactList;
         try {
-            Optional<ModuleList> optionalModuleList = storageList.readModuleList();
+            Optional<ModuleList> optionalModuleList = moduleStorageList.readModuleList();
             if (optionalModuleList.isEmpty()) {
-                moduleList = new ModuleList(new ArrayList<Module>());
+                moduleList = new ModuleList(new ArrayList<>());
             } else {
-                moduleList = storageList.readModuleList().get();
+                moduleList = moduleStorageList.readModuleList().get();
+            }
+            Optional<ContactList> optionalContactList = contactStorageList.readContactList();
+            if (optionalContactList.isEmpty()) {
+                contactList = new ContactList(new ArrayList<>());
+            } else {
+                contactList = contactStorageList.readContactList().get();
             }
         } catch (DataConversionException e) {
             System.out.println(e.getMessage());
-            moduleList = new ModuleList(new ArrayList<Module>());
+            moduleList = new ModuleList(new ArrayList<>());
+            contactList = new ContactList(new ArrayList<>());
         }
-        LogicManager lm = new LogicManager(storage, moduleList, new ContactList(new ArrayList<>()));
+        LogicManager lm = new LogicManager(storage, moduleList, contactList);
         while (!isExit) {
             String current = ui.getInput();
             CommandResult res = lm.execute(current);
